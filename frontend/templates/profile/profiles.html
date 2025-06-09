@@ -1,0 +1,37 @@
+{% extends "./base.html" %} {% block title %}IP Pool{% endblock %} {% block
+content %}
+<div class="container">
+  <h2 class="mt-4">Current Profiles</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Profile Name</th>
+        <th>Local Address</th>
+        <th>Remote Address</th>
+        <th>DNS Server 1</th>
+        <th>DNS Server 2</th>
+        <th>Only One</th>
+        <th>Bandwitdh Limit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for profile in profiles %}
+      <tr>
+        <td>{{ profile["name"] }}</td>
+        <td>{{ profile["local-address"] }}</td>
+        <td>{{ profile["remote-address"] }}</td>
+        {% if profile["dns-server"] %}
+        <td>{{ profile["dns-server"].split(",")[0] }}</td>
+        <td>{{ profile["dns-server"].split(",")[1] }}</td>
+        {% else %}
+        <td>N/A</td>
+        <td>N/A</td>
+        {% endif %}
+        <td>{{ profile["only-one"] }}</td>
+        <td>{{ profile["rate-limit"] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

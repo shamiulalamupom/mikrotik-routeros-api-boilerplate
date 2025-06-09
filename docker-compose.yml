@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo-easyconnect
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - default
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    container_name: backend-easyconnect
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_ENV: development
+      FLASK_APP: backend:create_backend()
+      MONGO_URI: mongodb://mongo:27017/easyconnect
+      MIKROTIK_HOST: ${MIKROTIK_HOST}
+      MIKROTIK_USERNAME: ${MIKROTIK_USERNAME}
+      MIKROTIK_PASSWORD: ${MIKROTIK_PASSWORD}
+      MIKROTIK_PORT: ${MIKROTIK_PORT}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_ACCESS_TOKEN_EXPIRES: ${JWT_ACCESS_TOKEN_EXPIRES}
+      JWT_REFRESH_TOKEN_EXPIRES: ${JWT_REFRESH_TOKEN_EXPIRES}
+      BACKEND_HOST: ${BACKEND_HOST}
+    volumes:
+      - .:/app
+    command: ["flask", "run", "--debug", "--host", "0.0.0.0", "--port", "5000"]
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+    networks:
+      - default
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    container_name: frontend-easyconnect
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_ENV: development
+      FLASK_APP: frontend:create_frontend()
+      BACKEND_HOST: ${BACKEND_HOST}
+    volumes:
+      - .:/app
+    command: ["flask", "run", "--debug", "--host", "0.0.0.0", "--port", "5001"]
+    ports:
+      - 5001:5001
+    depends_on:
+      - backend
+    networks:
+      - default
+
+volumes:
+  mongo_data:
+
+networks:
+  default:
+    driver: bridge

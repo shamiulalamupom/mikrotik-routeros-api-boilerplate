@@ -1,0 +1,25 @@
+{% extends "./base.html" %} {% block title %}IP Pool{% endblock %} {% block
+content %}
+<div class="container">
+  <h1>IP Pool</h1>
+  <p>Manage your IP pool here.</p>
+  {% include "./pool/pool_form.html" %}
+  <h2 class="mt-4">Current Pools</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Pool Name</th>
+        <th>Ranges</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pool in pools %}
+      <tr>
+        <td>{{ pool["name"] }}</td>
+        <td>{{ pool["ranges"] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

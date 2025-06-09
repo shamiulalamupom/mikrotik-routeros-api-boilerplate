@@ -1,0 +1,10 @@
+<h1>Create PPP Pool</h1>
+<form action="{{ url_for('pools.pools') }}" method="POST">
+  <label>Name:</label><br />
+  <input type="text" name="name" required /><br /><br />
+
+  <label>Ranges:</label><br />
+  <input type="text" name="ranges" /><br /><br />
+
+  <button type="submit">Create Profile</button>
+</form>
