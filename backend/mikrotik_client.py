@@ -4,7 +4,7 @@ from config import MikrotikConfig
 class MikroTikClient:
     def __init__(self):
         self.pool = RouterOsApiPool(
-            MikrotikConfig.HOST,
+            host=MikrotikConfig.HOST,
             username=MikrotikConfig.USERNAME,
             password=MikrotikConfig.PASSWORD,
             port=MikrotikConfig.PORT,
