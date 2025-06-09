@@ -15,3 +15,10 @@ def profile():
         return render_template('auth/login.html')
     elif request.method == 'POST':
         pass
+
+@auth_bp.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == 'GET':
+        return render_template('auth/register.html')
+    elif request.method == 'POST':
+        pass
