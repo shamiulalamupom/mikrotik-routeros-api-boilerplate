@@ -1,70 +1,40 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
 %}
-<!-- Full-screen flex container -->
-<div class="flex h-screen w-screen">
-  <!-- Left: Login Form -->
-  <div class="w-full md:w-1/4 bg-white flex flex-col justify-center p-10">
-    <h2 class="text-3xl font-bold text-gray-800 mb-2">We Are Mentor</h2>
-    <!--Need to change descriptions-->
-    <p class="text-gray-500 mb-8">
-      Welcome back, please login to your account.
-    </p>
+<div class="w-screen bg-gradient-to-r from-purple-500 to-blue-500 min-h-screen flex items-center justify-center">
+  <!-- Center: Login Form -->
+  <div
+    class="w-full md:w-3/4 lg:w-2/5 xl:w-1/4 bg-white rounded-none md:rounded-xl lg:rounded-xl xl:rounded-xl flex flex-col justify-center px-10 py-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-2">We Are Mentor</h2> <!--Need to change descriptions-->
+    <p class="text-gray-500 mb-8">Welcome back, please login to your account.</p>
 
     <form class="space-y-5">
       <div>
-        <label class="block mb-1 text-sm font-medium text-gray-600"
-          >User Name*</label
-        >
-        <input
-          type="text"
-          placeholder="Username"
-          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
-        />
+        <label class="block mb-1 text-sm font-medium text-gray-600">User Name*</label>
+        <input type="text" placeholder="Username"
+          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-purple-500" />
       </div>
 
       <div>
-        <label class="block mb-1 text-sm font-medium text-gray-600"
-          >Password*</label
-        >
-        <input
-          type="password"
-          placeholder="Password"
-          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
-        />
+        <label class="block mb-1 text-sm font-medium text-gray-600">Password*</label>
+        <input type="password" placeholder="Password"
+          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-purple-500" />
       </div>
 
       <div class="flex items-center justify-between text-sm text-gray-600">
         <label class="flex items-center">
-          <input type="checkbox" class="mr-2" /> Remember Me
+          <input type="checkbox" class="mr-2"> Remember Me
         </label>
         <a href="#" class="text-purple-600 hover:underline">Forgot Password?</a>
       </div>
 
-      <button
-        type="submit"
-        class="w-full py-2 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700"
-      >
-        SIGN IN
-      </button>
+      <button type="submit"
+        class="w-full py-2 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700">SIGN
+        IN</button>
 
       <p class="text-sm text-center text-gray-500 mt-4">
-        Don’t have an account?
-        <a href="#" class="text-purple-600 hover:underline font-medium"
-          >Sign Up</a
-        >
+        Don’t have an account? <a href="#" class="text-purple-600 hover:underline font-medium">Sign Up</a>
       </p>
     </form>
-  </div>
-
-  <!-- Right: Illustration -->
-  <div
-    class="hidden md:flex w-3/4 items-center justify-center bg-gradient-to-br from-purple-600 to-blue-600"
-  >
-    <img
-      src="assets/img/login.svg"
-      alt="Login Illustration"
-      class="w-3/4 max-w-md"
-    />
   </div>
 </div>
 {% endblock %}
