@@ -1,7 +1,18 @@
 from passlib.hash import bcrypt
 from backend.models.user_model import user_collection
 
-async def create_user(username, password):
+async def check_existing_user(username, email):
+    """
+    Check if a user with the given username or email already exists.
+    
+    :param username: The username to check.
+    :param email: The email to check.
+    :return: True if user exists, False otherwise.
+    """
+    existing_user = await user_collection.find_one({"username": username, "email": email})
+    return existing_user is not None
+
+async def create_user(username, password, email):
     """
     Create a new user in the database with hashed password.
     
@@ -11,7 +22,8 @@ async def create_user(username, password):
     hashed_password = bcrypt.hash(password)
     await user_collection.insert_one({
         "username": username,
-        "password": hashed_password
+        "password": hashed_password,
+        "email": email
     })
     return {"username": username}
 
