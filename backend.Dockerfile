@@ -15,4 +15,5 @@ COPY config.py ./config.py
 ENV FLASK_APP=backend:create_backend()
 
 # Default command for backend
-CMD ["flask", "run", "--debug", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "backend:create_backend", "--factory", "--host", "0.0.0.0", "--port", "5000", "--reload"]
+

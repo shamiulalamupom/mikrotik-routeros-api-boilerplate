@@ -1,23 +1,4 @@
 {% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block
 content %}
-<h1>Interfaces</h1>
-<ul>
-  {% for iface in interfaces %}
-  <li>{{ iface.name }} - {{ iface.type }}</li>
-  {% endfor %}
-</ul>
-
-<h1>IP Addresses</h1>
-<ul>
-  {% for ip in ip_addresses %}
-  <li>{{ ip.address }} on {{ ip.interface }}</li>
-  {% endfor %}
-</ul>
-
-<h2>Add IP</h2>
-<form method="POST" action="{{ url_for('main.add_ip') }}">
-  <input type="text" name="address" placeholder="192.168.88.100/24" />
-  <input type="text" name="interface" placeholder="ether1" />
-  <button type="submit">Add IP</button>
-</form>
+<h1>Welcome to Netrivy API</h1>
 {% endblock %}
